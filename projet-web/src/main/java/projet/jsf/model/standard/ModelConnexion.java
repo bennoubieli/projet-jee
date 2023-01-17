@@ -7,7 +7,9 @@ import javax.inject.Named;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.service.IServiceConnexion;
+import projet.dao.jpa.DaoUtilisateur;
 import projet.jsf.data.Compte;
+import projet.jsf.data.Utilisateur;
 import projet.jsf.util.CompteActif;
 import projet.jsf.util.UtilJsf;
 
@@ -26,6 +28,12 @@ public class ModelConnexion {
 	private ModelInfo		modelInfo;
 	@EJB
 	private IServiceConnexion serviceConnexion;
+
+	
+	private Utilisateur utilisateurActif;
+
+	@Inject
+	private DaoUtilisateur daoUtilisateur;
 
 
 	// Getters 
@@ -65,4 +73,26 @@ public class ModelConnexion {
 	    	return null;
 	    }
 	}	
+	
+	public boolean isLoggedIn() {
+		return utilisateurActif != null;
+	}
+
+	public String login() {
+		utilisateurActif = daoUtilisateur.authentifier(compteActif.getEmail(), compteActif.getMotDePasse());
+		if (utilisateurActif != null) {
+			UtilJsf.messageInfo("Connexion réussie.");
+			
+			return "home";
+		} else {
+			UtilJsf.messageError("Identifiant ou mot de passe invalide.");
+			return "login";
+		}
+	}
+
+	public String logout() {
+		UtilJsf.sessionInvalidate();
+		UtilJsf.messageInfo("Vous avez été déconnecté");
+		return "login";
+	}
 }
