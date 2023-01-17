@@ -1,4 +1,4 @@
-package maboutique.data;
+package projet.jsf.data;
 
 import java.io.Serializable;
 
