@@ -39,6 +39,8 @@ public class Utilisateur implements Serializable {
 
 	private String role;
 
+	private int paiement; 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -71,12 +73,13 @@ public class Utilisateur implements Serializable {
 		this.email = email;
 	}
 
-	public String getMotdepasse() {
+
+	public String getMotDePasse() {
 		return motDePasse;
 	}
 
-	public void setMotdepasse(String motdepasse) {
-		this.motDePasse = motdepasse;
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
 
 	public String getRole() {
@@ -85,6 +88,15 @@ public class Utilisateur implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	
+	public int getPaiement() {
+		return paiement;
+	}
+
+	public void setPaiement(int paiement) {
+		this.paiement = paiement;
 	}
 
 	@Override
