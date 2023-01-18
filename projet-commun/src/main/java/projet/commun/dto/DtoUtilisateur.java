@@ -15,6 +15,8 @@ public class DtoUtilisateur implements Serializable  {
 	
 	private String		nom;
 	
+	private String prenom;
+	
 	private String		motDePasse;
 	
 	private String		email;
@@ -27,11 +29,12 @@ public class DtoUtilisateur implements Serializable  {
 	public DtoUtilisateur() {
 	}
 
-	public DtoUtilisateur(int id, String nom, String motDePasse, String email ) {
+	public DtoUtilisateur(int id, String nom, String motDePasse, String email,String prenom ) {
 		this.id = id;
 		this.nom = nom;
 		this.motDePasse = motDePasse;
 		this.email = email;
+		this.prenom = prenom; 
 	}
 	
 	
@@ -51,6 +54,14 @@ public class DtoUtilisateur implements Serializable  {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public String getMotDePasse() {
