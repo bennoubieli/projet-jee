@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
-public class Utilisateur implements Serializable{
+public class Utilisateur implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,15 +29,16 @@ public class Utilisateur implements Serializable{
 
 	@NotBlank(message = "L'adresse mail doit être renseigné")
 	@Size(max = 50, message = "Valeur trop longue pour le prénom : 50 car. maxi")
-	@Email( message = "Adresse e-mail invalide" )
+	@Email(message = "Adresse e-mail invalide")
 	private String email;
 
 	@NotBlank(message = "Le mot de passe doit être renseigné")
 	@Size(min = 5, message = "Le mot d passe doit avoir au moins 5 caractères")
 	@Size(max = 50, message = "Le mot d passe doit avoir au plus 50 caractères")
 	private String motDePasse;
-	
-	
+
+	private String role;
+
 	public Integer getId() {
 		return id;
 	}
@@ -78,6 +79,13 @@ public class Utilisateur implements Serializable{
 		this.motDePasse = motdepasse;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public int hashCode() {
@@ -96,4 +104,3 @@ public class Utilisateur implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 }
-
