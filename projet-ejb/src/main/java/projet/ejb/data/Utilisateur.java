@@ -39,7 +39,7 @@ public class Utilisateur  {
 	
 	
 	@Column( name = "role")
-	private List<String> roles = new ArrayList<>();	
+	private String roles ;	
 	
 	
 	// Constructeurs
@@ -110,11 +110,11 @@ public class Utilisateur  {
 		this.email = email;
 	}
 
-	public List<String> getRoles() {
+	public String getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 

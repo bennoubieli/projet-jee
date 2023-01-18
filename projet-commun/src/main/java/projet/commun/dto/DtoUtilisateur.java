@@ -19,7 +19,7 @@ public class DtoUtilisateur implements Serializable  {
 	
 	private String		email;
 	
-	private List<String> roles = new ArrayList<>();
+	private String roles ;
 	
 	
 	// Constructeurs
@@ -69,24 +69,13 @@ public class DtoUtilisateur implements Serializable  {
 		this.email = email;
 	}
 
-	public List<String> getRoles() {
+	public String getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 
 	
-	public boolean isInRole( String role ) {
-		
-		if ( role != null ) {
-			for ( String r : roles ) {
-				if ( r.equals(role) ) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
-}
