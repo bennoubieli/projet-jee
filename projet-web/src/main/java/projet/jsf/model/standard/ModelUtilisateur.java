@@ -9,10 +9,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoUtilisateur;
 import projet.commun.exception.ExceptionValidation;
-import projet.commun.service.IServiceCompte;
-import projet.jsf.data.Compte;
+import projet.commun.service.IServiceUtilisateur;
+import projet.jsf.data.Utilisateur;
 import projet.jsf.data.mapper.IMapper;
 import projet.jsf.util.UtilJsf;
 
@@ -25,12 +25,12 @@ public class ModelUtilisateur implements Serializable {
 	
 	// Champs
 	
-	private List<Compte>	liste;
+	private List<Utilisateur>	liste;
 	
-	private Compte			courant;
+	private Utilisateur			courant;
 	
 	@EJB
-	private IServiceCompte	serviceCompte;
+	private IServiceUtilisateur	serviceUtilisateur;
 	
 	@Inject
 	private IMapper			mapper;
@@ -38,19 +38,19 @@ public class ModelUtilisateur implements Serializable {
 	
 	// Getters 
 	
-	public List<Compte> getListe() {
+	public List<Utilisateur> getListe() {
 		if ( liste == null ) {
 			liste = new ArrayList<>();
-			for ( DtoCompte dto : serviceCompte.listerTout() ) {
+			for ( DtoUtilisateur dto : serviceUtilisateur.listerTout() ) {
 				liste.add( mapper.map( dto ) );
 			}
 		}
 		return liste;
 	}
 	
-		public Compte getCourant() {
+		public Utilisateur getCourant() {
 			if ( courant == null ) {
-				courant = new Compte();
+				courant = new Utilisateur();
 			}
 			return courant;
 		}
@@ -60,9 +60,9 @@ public class ModelUtilisateur implements Serializable {
 	
 	public String actualiserCourant() {
 		if ( courant != null ) {
-			DtoCompte dto = serviceCompte.retrouver( courant.getId() ); 
+			DtoUtilisateur dto = serviceUtilisateur.retrouver( courant.getId() ); 
 			if ( dto == null ) {
-				UtilJsf.messageError( "Le compte demandé n'existe pas" );
+				UtilJsf.messageError( "Le Utilisateur demandé n'existe pas" );
 				return "test/liste";
 			} else {
 				courant = mapper.map( dto );
@@ -77,9 +77,9 @@ public class ModelUtilisateur implements Serializable {
 	public String validerMiseAJour() {
 		try {
 			if ( courant.getId() == null) {
-				serviceCompte.inserer( mapper.map(courant) );
+				serviceUtilisateur.inserer( mapper.map(courant) );
 			} else {
-				serviceCompte.modifier( mapper.map(courant) );
+				serviceUtilisateur.modifier( mapper.map(courant) );
 			}
 			UtilJsf.messageInfo( "Mise à jour effectuée avec succès." );
 			return "liste";
@@ -89,9 +89,9 @@ public class ModelUtilisateur implements Serializable {
 		}
 	}
 	
-	public String supprimer( Compte item ) {
+	public String supprimer( Utilisateur item ) {
 		try {
-			serviceCompte.supprimer( item.getId() );
+			serviceUtilisateur.supprimer( item.getId() );
 			liste.remove(item);
 			UtilJsf.messageInfo( "Suppression effectuée avec succès." );
 		} catch (ExceptionValidation e) {
