@@ -2,6 +2,7 @@ package projet.ejb.service.standard;
 
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
