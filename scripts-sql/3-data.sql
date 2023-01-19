@@ -38,7 +38,7 @@ ALTER TABLE utilisateur ALTER COLUMN idutilisateur RESTART WITH 4;
 
 -- Enfant 
 
-INSERT INTO enfant (idenfant, nom, prenom, datedenaissance, etabfrequente, niveauetude, creneauchoisi, modedepaiement) VALUES
-( 1, 'Durand', 'Pierre', '2000-05-13', 'Lycée Renoir', 'PREMIERE', '10:00:00', 'ESPECES');
+INSERT INTO enfant (idenfant, idutilisateur, nom, prenom, datedenaissance, etabfrequente, niveauetude, creneauchoisi, modedepaiement) VALUES
+( 1,2, 'Durand', 'Pierre', '2000-05-13', 'Lycée Renoir', 'PREMIERE', '10:00:00', 'ESPECES');
 ALTER TABLE enfant ALTER COLUMN idenfant RESTART WITH 2;
  

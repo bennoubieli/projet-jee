@@ -1,22 +1,18 @@
 package projet.jsf.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
-@Entity
 public class Utilisateur implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Integer id;
 
 	@NotBlank(message = "Le nom doit être renseigné")
@@ -37,9 +33,11 @@ public class Utilisateur implements Serializable {
 	@Size(max = 50, message = "Le mot d passe doit avoir au plus 50 caractères")
 	private String motDePasse;
 
-	private String role;
+	private String roles;
 
 	private int paiement; 
+	
+	private List<Enfant>	enfants = new ArrayList<>();
 	
 	public Integer getId() {
 		return id;
@@ -82,12 +80,12 @@ public class Utilisateur implements Serializable {
 		this.motDePasse = motDePasse;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	
@@ -97,6 +95,15 @@ public class Utilisateur implements Serializable {
 
 	public void setPaiement(int paiement) {
 		this.paiement = paiement;
+	}
+
+	
+	public List<Enfant> getEnfants() {
+		return enfants;
+	}
+
+	public void setEnfants(List<Enfant> enfants) {
+		this.enfants = enfants;
 	}
 
 	@Override

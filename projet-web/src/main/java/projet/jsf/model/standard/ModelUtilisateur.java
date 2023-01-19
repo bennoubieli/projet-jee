@@ -12,6 +12,7 @@ import javax.inject.Named;
 import projet.commun.dto.DtoUtilisateur;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceUtilisateur;
+import projet.jsf.data.Enfant;
 import projet.jsf.data.Utilisateur;
 import projet.jsf.data.mapper.IMapper;
 import projet.jsf.util.UtilJsf;
@@ -100,4 +101,19 @@ public class ModelUtilisateur implements Serializable {
 		return null;
 	}
 	
+	public String ajouterEnfant() {
+		courant.getEnfants().add( new Enfant() );
+		return null;
+	}
+	
+	
+	public String supprimerEnfant( Enfant telephone ) {
+		for ( int i=0; i < courant.getEnfants().size(); ++i ) {
+			if ( courant.getEnfants().get(i) == telephone ) {
+				courant.getEnfants().remove( i );
+				break;
+			}
+		}
+		return null;
+	}
 }
