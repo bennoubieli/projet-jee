@@ -1,11 +1,14 @@
 package projet.jsf.data.mapper;
 
 import org.mapstruct.Mapper;
+
 import org.mapstruct.MappingTarget;
 
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoEnfant;
 import projet.commun.dto.DtoUtilisateur;
 import projet.jsf.data.Compte;
+import projet.jsf.data.Enfant;
 import projet.jsf.data.Utilisateur;
 
 @Mapper(componentModel = "cdi")
@@ -28,5 +31,14 @@ public interface IMapper {
 	Utilisateur duplicate(Utilisateur source);
 
 	Utilisateur update(@MappingTarget Utilisateur target, Utilisateur source);
+	
+	Enfant map(DtoEnfant source);
+
+	DtoEnfant map(Enfant source);
+
+	Enfant duplicate(Enfant source);
+
+	Enfant update(@MappingTarget Enfant target, Enfant source);
+
 
 }

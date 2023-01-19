@@ -1,11 +1,14 @@
 package projet.ejb.data.mapper;
 
 import org.mapstruct.Mapper;
+
 import org.mapstruct.factory.Mappers;
 
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoEnfant;
 import projet.commun.dto.DtoUtilisateur;
 import projet.ejb.data.Compte;
+import projet.ejb.data.Enfant;
 import projet.ejb.data.Utilisateur;
 
  
@@ -27,5 +30,11 @@ public interface IMapperEjb {
 		
 		DtoUtilisateur map( Utilisateur source );
 		
-	
+		// Utilisateur
+		
+			Enfant map( DtoEnfant source );
+			
+			DtoEnfant map( Enfant source );
+			
+		
 }
