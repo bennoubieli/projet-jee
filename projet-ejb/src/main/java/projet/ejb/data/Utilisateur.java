@@ -47,12 +47,13 @@ public class Utilisateur  {
 	public Utilisateur() {
 	}
 
-	public Utilisateur(int id, String nom,String prenom, String motDePasse, String email) {
+	public Utilisateur(int id, String nom,String prenom, String motDePasse, String email, String role) {
 		this.id = id;
 		this.nom = nom;
 		this.motDePasse = motDePasse;
 		this.email = email;
 		this.prenom = prenom;
+		this.roles = role;
 
 	}
 	

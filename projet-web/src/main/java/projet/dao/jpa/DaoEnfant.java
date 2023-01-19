@@ -32,7 +32,7 @@ public class DaoEnfant {
 	return em.find( Enfant.class, idEnfant );
 	}
 	public List<Enfant> listerTout() {
-	var jpql = "SELECT e FROM Enfant e ORDER BY e.nom";
+	var jpql = "SELECT e FROM Enfant e ORDER BY e.nom, e.prenom";
 	var query = em.createQuery( jpql, Enfant.class );
 	return query.getResultList();
 	}

@@ -29,12 +29,13 @@ public class DtoUtilisateur implements Serializable  {
 	public DtoUtilisateur() {
 	}
 
-	public DtoUtilisateur(int id, String nom, String motDePasse, String email,String prenom ) {
+	public DtoUtilisateur(int id, String nom, String motDePasse, String email,String prenom ,String role) {
 		this.id = id;
 		this.nom = nom;
 		this.motDePasse = motDePasse;
 		this.email = email;
 		this.prenom = prenom; 
+		this.roles = role;
 	}
 	
 	

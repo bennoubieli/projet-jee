@@ -33,9 +33,6 @@ public class  Enfant implements Serializable
 	@NotBlank( message="Le nom doit être renseigné")
 	private String modePaiement;
 	
-	
-	private boolean admin;
-
 
 	 public Integer getId() {
 		return id;
@@ -85,12 +82,6 @@ public class  Enfant implements Serializable
 	}
 	public void setMotDePasse(String nmotDePasse) {
 		this.motDePasse = nmotDePasse;
-	}
-	public boolean isAdmin() {
-		return admin;
-	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
 	}
 	
 	//protection des ressources 
