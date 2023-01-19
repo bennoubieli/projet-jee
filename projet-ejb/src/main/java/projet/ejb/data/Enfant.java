@@ -9,11 +9,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table( name = "utilisateur" )
+@Table( name = "enfant" )
 public class Enfant  {
 
 	
@@ -21,6 +23,7 @@ public class Enfant  {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "idenfant")
 	private Integer id;
 	@Column( name = "nom")
 	private String nom;
@@ -34,7 +37,9 @@ public class Enfant  {
 	private String niveauEtude;
 	@Column( name = "modedepaiement")
 	private String modePaiement;
-	
+	@ManyToOne
+	@JoinColumn(name = "idutilisateur")
+	private Utilisateur utilisateur;
 	
 	
 	// Constructeurs

@@ -1,6 +1,6 @@
 package projet.ejb.data;
 
-
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
@@ -10,57 +10,68 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-
 @Entity
-@Table( name = "utilisateur" )
-public class Utilisateur  {
+@Table(name = "utilisateur")
+public class Utilisateur {
 
-	
 	// Champs
 
 	@Id
-	@GeneratedValue( strategy = IDENTITY)
-	@Column( name = "idutilisateur")
-	private int			id;
-	
-	@Column( name = "nom")
-	private String		nom;
-	
-	@Column( name = "prenom")
-	private String		prenom;
-	
-	@Column( name = "motdepasse")
-	private String		motDePasse;
-	
-	@Column( name = "email")
-	private String		email;
-	
-	
-	@Column( name = "role")
-	private String roles ;	
-	
-	
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "idutilisateur")
+	private int id;
+
+	@Column(name = "nom")
+	private String nom;
+
+	@Column(name = "prenom")
+	private String prenom;
+
+	@Column(name = "motdepasse")
+	private String motDePasse;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "role")
+	private String roles;
+
+	@Column(name = "paiement")
+	private int paiement;
+
+	@OneToMany( mappedBy = "utilisateur", cascade = ALL, orphanRemoval = true  )
+	@OrderBy( "nom" )
+	private List<Enfant>	enfants = new ArrayList<>();
 	// Constructeurs
-	
+
 	public Utilisateur() {
 	}
 
+<<<<<<< HEAD
 	public Utilisateur(int id, String nom,String prenom, String motDePasse, String email, String role) {
+=======
+	public Utilisateur(int id, String nom, String prenom, String motDePasse, String email, String roles, int paiement) {
+>>>>>>> branch 'master' of https://github.com/bennoubieli/projet-jee.git
 		this.id = id;
 		this.nom = nom;
 		this.motDePasse = motDePasse;
 		this.email = email;
 		this.prenom = prenom;
+<<<<<<< HEAD
 		this.roles = role;
+=======
+		this.roles = roles;
+		this.paiement = paiement;
+>>>>>>> branch 'master' of https://github.com/bennoubieli/projet-jee.git
 
 	}
-	
-		
+
 	// Getters & setters
-	
-	    
+
 	// equals() et hashcode()
 
 	@Override
@@ -119,6 +130,33 @@ public class Utilisateur  {
 		this.roles = roles;
 	}
 
+	public int getPaiement() {
+		return paiement;
+	}
+
+	public void setPaiement(int paiement) {
+		this.paiement = paiement;
+	}
+
+	
+	public List<Enfant> getEnfants() {
+		return enfants;
+	}
+
+	public void setEnfants(List<Enfant> enfants) {
+		this.enfants = enfants;
+	}
+	
+	// Actions
+	
+	public void ajouterEnfant( Enfant telephone ) {
+		enfants.add( telephone );
+	}
+	
+	public void retirerEnfant( Enfant telephone ) {
+		enfants.remove(telephone);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -132,5 +170,5 @@ public class Utilisateur  {
 			return false;
 		return true;
 	}
-	
+
 }

@@ -9,11 +9,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import projet.commun.dto.DtoUtilisateur;
+import projet.commun.dto.DtoCours;
 import projet.commun.exception.ExceptionValidation;
-import projet.commun.service.IServiceUtilisateur;
-import projet.jsf.data.Enfant;
-import projet.jsf.data.Utilisateur;
+import projet.commun.service.IServiceCours;
+import projet.jsf.data.Cours;
 import projet.jsf.data.mapper.IMapper;
 import projet.jsf.util.UtilJsf;
 
@@ -21,17 +20,17 @@ import projet.jsf.util.UtilJsf;
 @SuppressWarnings("serial")
 @Named
 @ViewScoped
-public class ModelUtilisateur implements Serializable {
+public class ModelCours implements Serializable {
 
 	
 	// Champs
 	
-	private List<Utilisateur>	liste;
+	private List<Cours>	liste;
 	
-	private Utilisateur			courant;
+	private Cours			courant;
 	
 	@EJB
-	private IServiceUtilisateur	serviceUtilisateur;
+	private IServiceCours	serviceCours;
 	
 	@Inject
 	private IMapper			mapper;
@@ -39,19 +38,19 @@ public class ModelUtilisateur implements Serializable {
 	
 	// Getters 
 	
-	public List<Utilisateur> getListe() {
+	public List<Cours> getListe() {
 		if ( liste == null ) {
 			liste = new ArrayList<>();
-			for ( DtoUtilisateur dto : serviceUtilisateur.listerTout() ) {
+			for ( DtoCours dto : serviceCours.listerTout() ) {
 				liste.add( mapper.map( dto ) );
 			}
 		}
 		return liste;
 	}
 	
-		public Utilisateur getCourant() {
+		public Cours getCourant() {
 			if ( courant == null ) {
-				courant = new Utilisateur();
+				courant = new Cours();
 			}
 			return courant;
 		}
@@ -61,9 +60,9 @@ public class ModelUtilisateur implements Serializable {
 	
 	public String actualiserCourant() {
 		if ( courant != null ) {
-			DtoUtilisateur dto = serviceUtilisateur.retrouver( courant.getId() ); 
+			DtoCours dto = serviceCours.retrouver( courant.getId() ); 
 			if ( dto == null ) {
-				UtilJsf.messageError( "Le Utilisateur demandé n'existe pas" );
+				UtilJsf.messageError( "Le Cours demandé n'existe pas" );
 				return "test/liste";
 			} else {
 				courant = mapper.map( dto );
@@ -78,9 +77,9 @@ public class ModelUtilisateur implements Serializable {
 	public String validerMiseAJour() {
 		try {
 			if ( courant.getId() == null) {
-				serviceUtilisateur.inserer( mapper.map(courant) );
+				serviceCours.inserer( mapper.map(courant) );
 			} else {
-				serviceUtilisateur.modifier( mapper.map(courant) );
+				serviceCours.modifier( mapper.map(courant) );
 			}
 			UtilJsf.messageInfo( "Mise à jour effectuée avec succès." );
 			return "liste";
@@ -90,9 +89,9 @@ public class ModelUtilisateur implements Serializable {
 		}
 	}
 	
-	public String supprimer( Utilisateur item ) {
+	public String supprimer( Cours item ) {
 		try {
-			serviceUtilisateur.supprimer( item.getId() );
+			serviceCours.supprimer( item.getId() );
 			liste.remove(item);
 			UtilJsf.messageInfo( "Suppression effectuée avec succès." );
 		} catch (ExceptionValidation e) {
@@ -101,19 +100,4 @@ public class ModelUtilisateur implements Serializable {
 		return null;
 	}
 	
-	public String ajouterEnfant() {
-		courant.getEnfants().add( new Enfant() );
-		return null;
-	}
-	
-	
-	public String supprimerEnfant( Enfant telephone ) {
-		for ( int i=0; i < courant.getEnfants().size(); ++i ) {
-			if ( courant.getEnfants().get(i) == telephone ) {
-				courant.getEnfants().remove( i );
-				break;
-			}
-		}
-		return null;
-	}
 }

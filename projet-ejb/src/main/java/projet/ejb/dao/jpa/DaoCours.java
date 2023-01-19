@@ -11,13 +11,13 @@ import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import projet.ejb.dao.IDaoEnfant;
-import projet.ejb.data.Enfant;
+import projet.ejb.dao.IDaoCours;
+import projet.ejb.data.Cours;
 
 @Stateless
 @Local
 @TransactionAttribute(MANDATORY)
-public class DaoEnfant implements IDaoEnfant {
+public class DaoCours implements IDaoCours {
 
 	// Champs
 
@@ -27,44 +27,44 @@ public class DaoEnfant implements IDaoEnfant {
 	// Actions
 
 	@Override
-	public int inserer(Enfant Enfant) {
-		em.persist(Enfant);
+	public int inserer(Cours Cours) {
+		em.persist(Cours);
 		em.flush();
-		return Enfant.getId();
+		return Cours.getId();
 	}
 
 	@Override
-	public void modifier(Enfant Enfant) {
-		em.merge(Enfant);
+	public void modifier(Cours Cours) {
+		em.merge(Cours);
 	}
 
 	@Override
-	public void supprimer(int idEnfant) {
-		em.remove(retrouver(idEnfant));
-	}
-
-	@Override
-	@TransactionAttribute(NOT_SUPPORTED)
-	public Enfant retrouver(int idEnfant) {
-		return em.find(Enfant.class, idEnfant);
+	public void supprimer(int idCours) {
+		em.remove(retrouver(idCours));
 	}
 
 	@Override
 	@TransactionAttribute(NOT_SUPPORTED)
-	public List<Enfant> listerTout() {
+	public Cours retrouver(int idCours) {
+		return em.find(Cours.class, idCours);
+	}
+
+	@Override
+	@TransactionAttribute(NOT_SUPPORTED)
+	public List<Cours> listerTout() {
 		em.clear();
-		var jpql = "SELECT e FROM Enfant e ORDER BY e.nom, e.prenom";
-		var query = em.createQuery(jpql, Enfant.class);
+		var jpql = "SELECT c FROM Cours c ORDER BY c.nom";
+		var query = em.createQuery(jpql, Cours.class);
 		return query.getResultList();
 	}
 
 	@Override
 	@TransactionAttribute(NOT_SUPPORTED)
-	public boolean verifierUnicitenom(String nom, int idEnfant) {
-		var jpql = "SELECT COUNT(e) FROM Enfant e WHERE e.nom=:nom AND e.id <> :idEnfant ";
+	public boolean verifierUnicitenom(String nom, int idCours) {
+		var jpql = "SELECT COUNT(c) FROM Cours c WHERE c.nom=:nom AND c.id <> :idCours ";
 		var query = em.createQuery(jpql, Long.class);
 		query.setParameter("nom", nom);
-		query.setParameter("idEnfant", idEnfant);
+		query.setParameter("idCours", idCours);
 		return query.getSingleResult() == 0;
 	}
 

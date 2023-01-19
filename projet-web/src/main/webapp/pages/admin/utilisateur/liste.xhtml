@@ -40,10 +40,16 @@
 				<f:facet name="header">
 					<h:outputText value="Rôles" />
 				</f:facet>
-				<ui:repeat value="#{item.role}" var="role" varStatus="status" >
-					#{utilAppli.getLibelléDeRole(role)}#{not status.last ? ', ' : ''}
-				</ui:repeat>
+				#{item.roles}
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Reste à Payer" />
+				</f:facet>
+				#{item.paiement}
+			</h:column>
+			
 			
 			<h:column>
 				<f:facet name="header">
