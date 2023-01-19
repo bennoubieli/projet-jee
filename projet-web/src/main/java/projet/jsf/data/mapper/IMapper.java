@@ -5,9 +5,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoCours;
 import projet.commun.dto.DtoEnfant;
 import projet.commun.dto.DtoUtilisateur;
 import projet.jsf.data.Compte;
+import projet.jsf.data.Cours;
 import projet.jsf.data.Enfant;
 import projet.jsf.data.Utilisateur;
 
@@ -39,6 +41,14 @@ public interface IMapper {
 	Enfant duplicate(Enfant source);
 
 	Enfant update(@MappingTarget Enfant target, Enfant source);
+
+	Cours map(DtoCours source);
+
+	DtoCours map(Cours source);
+
+	Cours duplicate(Cours source);
+
+	Cours update(@MappingTarget Cours target, Cours source);
 
 
 }
