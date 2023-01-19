@@ -42,3 +42,8 @@ INSERT INTO enfant (idenfant, idutilisateur, nom, prenom, datedenaissance, etabf
 ( 1,2, 'Durand', 'Pierre', '2000-05-13', 'Lycée Renoir', 'PREMIERE', '10:00:00', 'ESPECES');
 ALTER TABLE enfant ALTER COLUMN idenfant RESTART WITH 2;
  
+-- Cours
+INSERT INTO cours(idcours, nom, creneaudispo) VALUES
+(1,'MATHEMATIQUES','SAMEDI: 10H00-12H00'),
+(2,'INFORMATIQUE','DIMANCHE: 10H00-12H00');
+ALTER TABLE cours ALTER COLUMN idcours RESTART WITH 3;
