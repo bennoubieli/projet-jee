@@ -17,19 +17,39 @@
 		>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Psudo" />
+					<h:outputText value="Nom" />
 				</f:facet>
-				#{item.pseudo}
+				#{item.nom}
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Rôles" />
+					<h:outputText value="Prenom" />
 				</f:facet>
-				<ui:repeat value="#{item.roles}" var="role" varStatus="status" >
-					#{utilAppli.getLibelléDeRole(role)}#{not status.last ? ', ' : ''}
-				</ui:repeat>
+				#{item.prenom}
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Date de Naissance" />
+				</f:facet>
+				#{item.datedenaissance}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Etablissement" />
+				</f:facet>
+				#{item.etablissement}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Niveau" />
+				</f:facet>
+				#{item.niveauetude}
+			</h:column>
+			
 			
 			<h:column>
 				<f:facet name="header">
